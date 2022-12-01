@@ -1,25 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
-
+import "@/assets/css/reset.css";
+import Header from "./components/app-head";
+import Bottom from './components/app-bottom'
+import {Route, Routes} from "react-router-dom";
+import React from "react";
+import routers from "./router";
+import Player from "./components/app-player";
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <div>
+            <Header/>
+            <Routes>
+                {
+                    routers.map((item, index) => {
+                        return (
+                            <Route path={item.path} element={<item.component/>} key={index}/>
+                        )
+                    })
+                }
+            </Routes>
+            <Bottom/>
+            <Player/>
+        </div>
+    );
 }
 
 export default App;
